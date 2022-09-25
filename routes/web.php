@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::post('/dashboard', [\App\Http\Controllers\DashboardController::class, 'send'])->middleware(['auth'])->name('send-email');
+
+require __DIR__.'/auth.php';
