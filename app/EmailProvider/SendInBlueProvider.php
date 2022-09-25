@@ -22,7 +22,7 @@ class SendInBlueProvider implements EmailProviderInterface
     {
         //connect only once
         if (!self::$config) {
-            self::$config = Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+            self::$config = Configuration::getDefaultConfiguration()->setApiKey('api-key', env('SENDINBLUE_KEY'));
         }
 
         return self::$config;
@@ -73,7 +73,7 @@ class SendInBlueProvider implements EmailProviderInterface
                 $sendSmtpEmail = new SendSmtpEmail($sendData);
                 $result = $apiInstanceEmails->sendTransacEmail($sendSmtpEmail);
             }
-            
+
             return $result;
         } catch (Exception $e) {
             echo 'Exception when calling EmailCampaignsApi->sendEmailCampaignNow: ', $e->getMessage(), PHP_EOL;
